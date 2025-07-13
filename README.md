@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project was started from [my default template project](https://github.com/Brookelyn/template), where I've taken the time to set up most of what's required for a modern FE application - although this is still a work in progress. This starts with a base set up using [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). 
+
+I've additionally added Cypress for integration and e2e testing functionality, and React Query for data handling. I've used these as I have years of experience with both, if not necessarily in their most up to date forms - a polite description of the project I've been working on for the past year is 'legacy', despite my best efforts to bring it into the modern world.
+
+Tailwind is handling all the styling and no changes have been made to the default settings, including the font. 
+
+Thank you very much for taking the time to review it, and I look forward to discussing and extending it with you!
 
 ## Getting Started
 
-First, run the development server:
+You can get this project started locally by installing its dependencies and the running `npm run dev` from the root directory. You'll be able to see the result at [http://localhost:3000](http://localhost:3000).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+With the development server running, you can see the single Cypress flow by running `npm run cypress`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Thoughts, in no particular order
+I time-boxed this exercise and there are quite a few areas I'd like to tighten up - especially around test coverage. I firmly believe that good test coverage makes me able to build faster as I have almost immediate feedback when I break something, and prevents bugs from being put in front of our users.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- I've got some type errors, specifically around the unit test set up, that I'd resolve with more time.
+- Based on my previous experience, I'm anticipating being asked to extend my solution by posting the answers from the collected questions to an API - so I've created an appropriate hook using React Query's `useMutation` that's currently just returning the answers provided. This means that if we need to hook it up to an API, we've already got things set up.
+- More conversation around how the flow should work is needed. Should users be able to go back and change the answer to a previous question? Should the answers and current step persist even if the user reloads the page? Should they be able to click on the step indicator to move between steps?
+- This could look much nicer! This is very bare bones styling and could use some love from a design colleague.
+- I chose to push the user to a new route after starting their consultation, as this would potentially allow us in future to make the landing page more generic and use other signals - such as a URL param - to decide which consultation the user needed.
+- I've tried to make everything as reusable and easily extendable as possible.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
