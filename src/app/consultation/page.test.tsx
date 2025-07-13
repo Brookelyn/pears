@@ -1,9 +1,9 @@
 import { screen, render } from "@testing-library/react";
-import About from "./page";
+import Consultation from "./page";
 
 it("renders", () => {
-  render(<About />);
+  render(<Consultation />);
 
-  expect(screen.getByText("About page")).toBeInTheDocument();
+  expect(screen.getByText("Consultation page")).toBeInTheDocument();
   expect(screen.getByText("Home")).toBeInTheDocument();
 });

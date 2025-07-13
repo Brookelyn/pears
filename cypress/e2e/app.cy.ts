@@ -1,16 +1,13 @@
-describe('setup test', () => {
-	it('navigates from the landing page to a secondary page and back', () => {
-		cy.visit('/')
-		cy.get('a').contains('Home').should('not.exist');
+describe("setup test", () => {
+  it("allows navigation from the landing page to the consultation flow", () => {
+    cy.visit("/");
 
-		cy.get('a').contains('About').should('be.visible').click()
+    cy.get("h1").contains("Welcome").should("be.visible");
+    cy.get("p").invoke('text').should('not.be.empty');
+    cy.get("a").contains("Start consultation").should("be.visible").as('consultationBtn');
 
-		cy.url().should('contain', '/about')
-		cy.get('a').contains('About').should('not.exist');
+		cy.get('@consultationBtn').click()
 
-		cy.get('a').contains('Home').should('be.visible').click()
-
-		cy.url().should('not.contain', 'about')
-		cy.get('a').contains('About').should('be.visible')
-	})
-})
+		cy.url().should('contain', '/consultation')
+  });
+});

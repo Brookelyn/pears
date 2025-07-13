@@ -9,7 +9,7 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "test": "jest",
-    "watch": "jest --watch",
+    "watch": "jest --watch"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.83.0",
