@@ -10,9 +10,10 @@ import {
   consultationQuestions,
   TConsultationQuestions,
 } from "./consultationQuestions";
+import { useUpdateData } from "@/dataHandlers/useUpdateData/useUpdateData";
 
 type TConsultationContext = {
-	currentStep: number
+  currentStep: number;
   handleChangeStep: ({
     answer,
     step,
@@ -46,22 +47,31 @@ export const ConsultationProvider = ({
 }): ReactElement => {
   const [answers, setAnswers] = useState<{ [key: string]: boolean }>({});
   const [currentStep, setCurrentStep] = useState<number>(1);
-
-	console.log(answers)
+  const { mutateAsync } = useUpdateData();
 
   const handleChangeStep = useCallback(
-    ({
+    async ({
       answer,
       step,
     }: {
       answer: { [key: string]: boolean };
       step: number;
     }) => {
-			console.log(answer, step)
       setAnswers({ ...answers, ...answer });
       setCurrentStep(step + 1);
+
+      if (currentStep === consultationQuestions.length) {
+        try {
+          const res = await mutateAsync(answers);
+
+					console.log(res)
+        } catch {
+          console.log("an error");
+        }
+      }
     },
-    [answers]
+
+    [answers, currentStep, mutateAsync]
   );
 
   const contextValue = useMemo(
